@@ -1,1 +1,104 @@
-<h1>test</h1>
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Your mother is...</title>
+  <meta name="description" content="Your mother is...">
+  <meta name="author" content="yourmotheris">
+
+  <style>
+	/*@font-face {
+    font-family: AvantGardeBook;
+    src: url('https://github.com/ajlee2006/ajlee2006.github.io/blob/master/fonts/AvantGardeLT-Book.woff2') format('woff2'),
+        url('https://github.com/ajlee2006/ajlee2006.github.io/blob/master/fonts/AvantGardeLT-Book.woff') format('woff'),
+        url('https://github.com/ajlee2006/ajlee2006.github.io/blob/master/fonts/AvantGardeLT-Book.ttf') format('truetype');
+}
+@font-face {
+    font-family: AvantGardeItalic;
+    src: url('https://github.com/ajlee2006/ajlee2006.github.io/blob/master/fonts/AvantGardeLT-BookOblique.woff2') format('woff2'),
+        url('https://github.com/ajlee2006/ajlee2006.github.io/blob/master/fonts/AvantGardeLT-BookOblique.woff') format('woff'),
+        url('https://github.com/ajlee2006/ajlee2006.github.io/blob/master/fonts/AvantGardeLT-BookOblique.ttf') format('truetype');
+    font-style: italic;
+}
+*/
+ body {
+  background-color: black;
+}
+
+a:link {
+  color: lightskyblue;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: lightskyblue;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: pink;
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+	</style>
+
+</head>
+
+<body>
+
+<p id="number" style="color: #333333; font-family: 'Avant Garde LT Book', 'Avant Garde LT', 'ITC Avant Garde', 'Avant Garde', AvantGarde, AvantGardeBook, 'Century Gothic', CenturyGothic, sans-serif; font-size: 300px; position: absolute; top:-300px; white-space: nowrap;"></p>
+
+<p id="ymi" style="color: white; font-family: 'Avant Garde LT Book', 'Avant Garde LT', 'ITC Avant Garde', 'Avant Garde', AvantGarde, AvantGardeBook, 'Century Gothic', CenturyGothic, sans-serif; font-size: 160px; font-weight: bold; position: absolute; top:-140px; left:30px; white-space: nowrap;"></p>
+
+<p id="word" style="color: white; font-family: 'Avant Garde LT Book', 'Avant Garde LT', 'ITC Avant Garde', 'Avant Garde', AvantGarde, AvantGardeItalic, 'Century Gothic', CenturyGothic, sans-serif; font-size: 120px; font-style: italic; position: absolute; top:80px; left:30px; white-space: nowrap;"></p>
+
+<p id="otherstuff" style="color: white; font-family: 'Avant Garde LT Book', 'Avant Garde LT', 'ITC Avant Garde', 'Avant Garde', AvantGarde, AvantGardeBook, 'Century Gothic', CenturyGothic, sans-serif, sans-serif; font-size: 50px; position: absolute; top:300px; left:30px;">
+  <span id="pron"></span>
+  <br>
+  <span id="def"></span>
+  <br>
+  <span id="syn"></span>
+    <br><br>
+   <!--  <a href="/">Previous</a> | <a href="/">Next</a> | <a href="/">Latest</a> -->
+   <a href="javascript:rel()">Update</a>
+    <br>
+    <small style="font-size: 30px;"><a href="https://twitter.com/yourmotherisbot" style="color:darkgray;" onMouseOver="this.style.text-decoration='underline">Twitter bot</a> | <a href="https://github.com/ajlee2006/yourmotheris-data" style="color:darkgray;" onMouseOver="this.style.text-decoration='underline">Get the data</a></small><br>
+
+    <small style="font-size: 15px;color:black;" id="time"></small></p>
+
+
+<script>
+  
+function Get(yourUrl){
+    var Httpreq = new XMLHttpRequest(); // a new request
+    Httpreq.open("GET",yourUrl,false);
+    Httpreq.send(null);
+    return Httpreq.responseText;          
+}
+
+function rel(){
+  // console.log("Loading")
+  var j = JSON.parse(Get("https://raw.githubusercontent.com/ajlee2006/yourmotheris-data/main/current.txt"));
+  // console.log(j)
+  document.getElementById("time").innerHTML = j.data[0];
+  document.getElementById("number").innerHTML = '#'+j.data[1];
+  document.getElementById("ymi").innerHTML = j.data[2];
+  document.getElementById("word").innerHTML = j.data[3];
+  document.getElementById("pron").innerHTML = j.data[4];
+  document.getElementById("def").innerHTML = j.data[5];
+  document.getElementById("syn").innerHTML = j.data[6];
+}
+
+rel();
+
+</script>
+
+</body>
+</html>
